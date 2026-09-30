@@ -37,8 +37,8 @@ this project does not display an acceptance badge before approval.
 | Channel | Status and requirements |
 | --- | --- |
 | GitHub Releases | Official signed downloads |
-| Obtainium config catalog | GitHub contribution prepared; supports official GitHub releases |
-| android-foss | GitHub contribution prepared for RSS Readers |
+| Obtainium config catalog | [PR #1910](https://github.com/ImranR98/apps.obtainium.imranr.dev/pull/1910) submitted; awaiting review |
+| android-foss | [PR #777](https://github.com/offa/android-foss/pull/777) submitted for RSS Readers; awaiting review |
 | F-Droid | Request prepared; official tracker requires GitLab sign-in and build review |
 | IzzyOnDroid | Ineligible under its current LLM and AI-authored-code policy; not submitted |
 | OpenAPK | Form requires a maintainer name and verification email before submission |
