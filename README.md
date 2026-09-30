@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/debpalash/tru/releases">Download Android</a> ·
+  <a href="https://github.com/debpalash/tru/releases/latest">Download Android</a> ·
   <a href="#see-tru">Screenshots &amp; demos</a> ·
   <a href="docs/PRIVACY.md">Privacy</a> ·
   <a href="docs/RELEASE.md">Self-host AI</a> ·
@@ -18,7 +18,7 @@ with citations you can inspect. Evidence comes first; AI is an assistant.
 
 ## Get Tru
 
-Download an APK from [GitHub Releases](https://github.com/debpalash/tru/releases).
+Download an APK from the [latest release](https://github.com/debpalash/tru/releases/latest).
 Android **7.0 or newer** is required. Choose **universal** when unsure, or a smaller
 build for your device:
 

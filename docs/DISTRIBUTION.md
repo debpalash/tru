@@ -8,18 +8,17 @@ project or change its license.
 
 Use [GitHub Releases](https://github.com/debpalash/tru/releases). Build 2 keeps
 Android version `1.0.0`, increments `versionCode` to `2`, and uses the existing
-production signing identity. The `v1.0.0-r2` tag identifies this branding revision;
-the original `v1.0.0` tag and its downloads remain available. Android builds are
-published as previews while experimental X and private-route integrations need
-further testing.
+production signing identity. The `v1.0.0-r2` tag identifies the current stable
+release. Older release entries and downloads have been removed. Use the
+[latest release](https://github.com/debpalash/tru/releases/latest) for downloads.
 
 The release includes universal, ARM64, ARMv7, x86 and x86_64 APKs, an AAB,
 matching source, licenses, checksums, signature verification and a media bundle.
 
 ### Obtainium
 
-Add `https://github.com/debpalash/tru` in Obtainium, enable **Include prereleases**,
-set release sorting to **Release date**, and set **APK filter by regular
+Add `https://github.com/debpalash/tru` in Obtainium, set release sorting to
+**Release date**, and set **APK filter by regular
 expression** to `universal\.apk$`. This selects
 one compatible APK from the five architecture variants. The universal APK is
 larger; manual downloads offer smaller device-specific builds.
