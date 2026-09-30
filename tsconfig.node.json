@@ -1,0 +1,15 @@
+{
+  // Node-run code only: __tests__ (bun run test:extensions, via tsx) and scripts/.
+  // Kept OUT of the app's tsconfig.json because pulling @types/node into the app's
+  // scope shadows React Native's fetch/BodyInit with Node's undici types.
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "strict": true,
+    "moduleResolution": "bundler",
+    "types": ["node", "bun"],
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": ["**/__tests__/**/*.ts", "scripts/**/*.ts", "server/**/*.ts", "tests/**/*.ts"]
+}

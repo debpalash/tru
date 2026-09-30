@@ -1,0 +1,24 @@
+services:
+  api:
+    build: .
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      TRU_LISTEN_HOST: 0.0.0.0
+      TRU_DATA_DIR: /var/lib/tru
+    ports:
+      - "127.0.0.1:8788:8788"
+    volumes:
+      - access-data:/var/lib/tru
+    read_only: true
+    tmpfs:
+      - /tmp:size=16m,mode=1777
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    healthcheck:
+      test: ["CMD", "bun", "-e", "process.exit((await fetch('http://127.0.0.1:8788/health')).ok ? 0 : 1)"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+volumes:
+  access-data:

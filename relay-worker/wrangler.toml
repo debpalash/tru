@@ -1,0 +1,11 @@
+name = "tru-relay"
+main = "worker.js"
+compatibility_date = "2026-08-28"
+
+[observability]
+enabled = false
+
+[[ratelimits]]
+name = "RATE_LIMITER"
+namespace_id = "1001"
+simple = { limit = 60, period = 60 }

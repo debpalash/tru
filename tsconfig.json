@@ -1,0 +1,30 @@
+{
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "strict": true,
+    "moduleResolution": "bundler",
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ]
+    }
+  },
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    ".expo/types/**/*.ts",
+    "expo-env.d.ts"
+  ],
+  "exclude": [
+    "${configDir}/node_modules",
+    "${configDir}/server",
+    "${configDir}/tests",
+    "${configDir}/babel.config.js",
+    "${configDir}/metro.config.js",
+    "${configDir}/jest.config.js",
+    "${configDir}/android",
+    "${configDir}/ios",
+    "${configDir}/**/__tests__/**",
+    "${configDir}/scripts/**"
+  ]
+}

@@ -1,0 +1,19 @@
+name: Check
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.4.0
+      - run: bun install --frozen-lockfile
+      - run: bun run typecheck
+      - run: bun test
+      - run: bun run audit:release
+      - run: bun run notices
+      - run: EXPO_NO_DOTENV=1 bunx expo export --platform android --output-dir /tmp/tru-export
+      - run: python3 scripts/audit-release.py /tmp/tru-export

@@ -1,0 +1,5 @@
+export const publisherHosts = ["afp.com", "aljazeera.com", "apnews.com", "arstechnica.com", "bbc.co.uk", "bbc.com", "buenosairesherald.com", "cbc.ca", "cdc.gov", "channelnewsasia.com", "dailymaverick.co.za", "dw.com", "ec.europa.eu", "fda.gov", "france24.com", "github.com", "indianexpress.com", "lemonde.fr", "mexiconewsdaily.com", "nasa.gov", "nature.com", "ndtv.com", "nhk.or.jp", "nih.gov", "npr.org", "pib.gov.in", "producthunt.com", "rappler.com", "rbi.org.in", "reuters.com", "rfi.fr", "rnz.co.nz", "sbs.com.au", "science.org", "scmp.com", "sec.gov", "theguardian.com", "thehindu.com", "thenationalnews.com", "theverge.com", "un.org", "who.int"] as const
+export function trustedSearchDomains(): string[] { return [...publisherHosts] }
+export function trustedPublisherForUrl(raw: string): boolean {
+  try { const u = new URL(raw); return u.protocol === "https:" && !u.username && !u.password && (!u.port || u.port === "443") && publisherHosts.some(h => u.hostname === h || u.hostname === "www." + h) } catch { return false }
+}

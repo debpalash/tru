@@ -1,0 +1,16 @@
+diff --git a/android/build.gradle b/android/build.gradle
+index 13c7e43faf79865f9c9aef8d4d4971edf5057449..4524d63a546e15c587006715b638dc47905b8d0a 100644
+--- a/android/build.gradle
++++ b/android/build.gradle
+@@ -67,7 +67,10 @@ repositories {
+         url "$rootDir/../node_modules/jsc-android/dist"
+     }
+     google()
+-    jcenter()
++    // PATCH (NewsPal): jcenter() was removed in Gradle 9 and JCenter is sunset.
++    // Maven Central serves this module's dependencies and is the supported
++    // replacement under React Native 0.86 / Expo SDK 57.
++    mavenCentral()
+ }
+ 
+ dependencies {

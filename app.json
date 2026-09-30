@@ -1,0 +1,52 @@
+{
+  "expo": {
+    "name": "Tru",
+    "slug": "tru",
+    "scheme": "tru",
+    "version": "1.0.0",
+    "orientation": "default",
+    "userInterfaceStyle": "automatic",
+    "backgroundColor": "#171717",
+    "icon": "./assets/icon.png",
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.tru.news"
+    },
+    "android": {
+      "package": "com.tru.news",
+      "allowBackup": false,
+      "backgroundColor": "#171717",
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/icon-foreground.png",
+        "backgroundColor": "#171717"
+      }
+    },
+    "plugins": [
+      "expo-router",
+      "expo-secure-store",
+      "expo-notifications",
+      "expo-video",
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/splash.png",
+          "backgroundColor": "#171717",
+          "imageWidth": 160,
+          "resizeMode": "contain",
+          "dark": {
+            "image": "./assets/splash.png",
+            "backgroundColor": "#171717"
+          }
+        }
+      ]
+    ],
+    "notification": {
+      "icon": "./assets/notification-icon.png",
+      "color": "#171717"
+    },
+    "experiments": {
+      "typedRoutes": true
+    },
+    "description": "News. With evidence. Follow original reporting, compare sources, and see what remains uncertain."
+  }
+}

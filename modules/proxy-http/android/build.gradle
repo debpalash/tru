@@ -1,0 +1,42 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+
+group = 'expo.modules.proxyhttp'
+version = '0.1.0'
+
+def expoModulesCorePlugin = new File(project(":expo-modules-core").projectDir.absolutePath, "ExpoModulesCorePlugin.gradle")
+apply from: expoModulesCorePlugin
+applyKotlinExpoModulesCorePlugin()
+useCoreDependencies()
+useExpoPublishing()
+
+android {
+  namespace = "expo.modules.proxyhttp"
+  defaultConfig {
+    minSdkVersion 24
+    compileSdkVersion 35
+    targetSdkVersion 35
+  }
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_17
+    targetCompatibility JavaVersion.VERSION_17
+  }
+  kotlinOptions { jvmTarget = "17" }
+}
+
+repositories {
+  maven { url 'https://raw.githubusercontent.com/guardianproject/gpmaven/master' }
+}
+
+configurations.all {
+  resolutionStrategy { force "org.jetbrains.kotlin:kotlin-stdlib:1.9.24" }
+}
+
+dependencies {
+  implementation "androidx.webkit:webkit:1.12.1"
+  implementation "com.squareup.okhttp3:okhttp:4.9.2"
+  implementation("info.guardianproject:tor-android:0.4.9.5") {
+    exclude group: 'org.jetbrains.kotlin'
+  }
+  implementation "info.guardianproject:jtorctl:0.4.5.7"
+}
