@@ -7,7 +7,7 @@ version = package['version']
 name = package['name']
 output = root/'.local'/'release'
 output.mkdir(parents=True, exist_ok=True)
-roots = ['app','src','assets','android','modules','server','scripts','tests','docs','relay-worker','patches','.github','licenses']
+roots = ['app','src','assets','android','modules','server','scripts','tests','docs','relay-worker','patches','.github','licenses','fastlane','distribution']
 files = ['LICENSE','README.md','THIRD_PARTY_NOTICES.md','QUALITY.md','DESIGN.md','package.json','bun.lock','bunfig.toml','app.json','babel.config.js','metro.config.js','tsconfig.json','tsconfig.node.json','expo-env.d.ts','.gitignore','.env.example','Dockerfile','.dockerignore','compose.yaml']
 excluded = {'build','.gradle','.cxx','.kotlin','node_modules','.git','.expo','.local','__pycache__'}
 def allowed(p):

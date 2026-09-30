@@ -4,6 +4,7 @@ from pathlib import Path
 
 root = Path(__file__).resolve().parent.parent
 package = json.loads((root / 'package.json').read_text())
+version_code = json.loads((root / 'app.json').read_text())['expo']['android']['versionCode']
 folder = root / '.local' / 'release'
 env = dict(os.environ)
 config = root / '.local' / 'signing' / 'signing.env'
@@ -30,6 +31,7 @@ for suffix, architectures in expected.items():
         assert native == architectures, f'Wrong native architectures: {artifact.name}'
     badging = subprocess.run([str(buildtools / 'aapt2'), 'dump', 'badging', str(artifact)], capture_output=True, text=True, check=True).stdout
     assert "name='com.tru.news'" in badging and "application-label:'Tru'" in badging
+    assert f"versionCode='{version_code}'" in badging
     assert 'application-debuggable' not in badging
     assert "minSdkVersion:'24'" in badging and "targetSdkVersion:'36'" in badging
     results.append({'file': artifact.name, 'architectures': sorted(native), 'signature': 'valid', 'debuggable': False})
@@ -43,6 +45,6 @@ with zipfile.ZipFile(bundle) as archive:
     assert {name.split('/')[2] for name in archive.namelist() if name.startswith('base/lib/') and name.endswith('.so')} == set(abis)
 verification = subprocess.run([str(java / 'bin' / 'jarsigner'), '-verify', str(bundle)], env=env, capture_output=True, text=True, check=True).stdout
 assert 'jar verified' in verification
-report = {'version': package['version'], 'applicationId': 'com.tru.news', 'minSdk': 24, 'targetSdk': 36, 'certificateSha256': signer, 'apks': results, 'bundleSignature': 'valid'}
+report = {'version': package['version'], 'versionCode': version_code, 'applicationId': 'com.tru.news', 'minSdk': 24, 'targetSdk': 36, 'certificateSha256': signer, 'apks': results, 'bundleSignature': 'valid'}
 (folder / 'release-verification.json').write_text(json.dumps(report, indent=2) + '\n')
 print('All five APK signatures, architectures and production identity verified; AAB signature verified.')

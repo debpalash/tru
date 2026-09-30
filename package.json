@@ -16,6 +16,7 @@
     "notices": "python3 scripts/dependency-notices.py",
     "release:build": "python3 scripts/build-release.py",
     "release:source": "python3 scripts/package-source.py",
+    "release:package": "python3 scripts/package-release.py",
     "release:probe": "bun --env-file=.env scripts/probe-service.ts",
     "brand:assets": "python3 scripts/generate-brand-assets.py"
   },
@@ -30,7 +31,6 @@
     "expo-haptics": "~57.0.1",
     "expo-image": "~57.0.1",
     "expo-linking": "~57.0.3",
-    "expo-notifications": "~57.0.5",
     "expo-router": "~57.0.6",
     "expo-secure-store": "~57.0.1",
     "expo-splash-screen": "~57.0.4",
@@ -60,5 +60,5 @@
     "@react-native-cookies/cookies@6.2.1": "patches/@react-native-cookies%2Fcookies@6.2.1.patch"
   },
   "license": "AGPL-3.0-only",
-  "description": "News. With evidence."
+  "description": "Find the facts. Keep your privacy."
 }

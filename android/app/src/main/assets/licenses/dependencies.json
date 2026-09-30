@@ -1300,11 +1300,6 @@
     "license": "MIT"
   },
   {
-    "name": "expo-notifications",
-    "version": "57.0.15",
-    "license": "MIT"
-  },
-  {
     "name": "expo-router",
     "version": "57.0.17",
     "license": "MIT"

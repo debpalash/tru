@@ -1,0 +1,21 @@
+Find the facts. Keep your privacy.
+
+AI-generated noise is growing. Tru brings you back to original reporting, independent sources and clear evidence. Read news without an account, then connect a private AI service when you want help researching a question.
+
+• A compact feed with original publisher links and expandable story details.
+• Compare independent headline coverage; evidence scores describe corroboration, not proof of every claim.
+• Ask questions using supplied sources and see citations. AI is optional and requires a service you choose.
+• Save stories, read source pages, follow world coverage and track topics with device-only alerts.
+• Light, dark and dim themes. Optional Tor and relay controls for supported requests.
+• Experimental X support for your own account, with unsafe or unverified media hidden.
+
+Free and open source. No ads, subscription, analytics SDK, remote push service or developer-operated data collection endpoint. Preferences, saved stories and monitor rules stay on your device. Session cookies and service access tokens use OS secure storage.
+
+News publishers receive content requests and can see your IP unless a private route is active. Optional AI sends questions, selected excerpts and media previews to your chosen service and its providers. Those services have their own retention policies and may charge for usage. No shared AI service or provider keys are bundled.
+
+Tru cannot guarantee that every news claim is true. AI and safety classification can make mistakes. X's unofficial web APIs may change.
+
+Source: https://github.com/debpalash/tru
+Privacy: https://github.com/debpalash/tru/blob/main/docs/PRIVACY.md
+Support: https://github.com/debpalash/tru/issues
+License: AGPL-3.0-only

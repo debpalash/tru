@@ -39,7 +39,10 @@ for path in paths:
             with zipfile.ZipFile(p) as archive:
                 for name in archive.namelist():
                     if private_name(name): failures.append(f'{p}:{name}')
-                    inspect(f'{p}:{name}', archive.read(name))
+                    data = archive.read(name)
+                    inspect(f'{p}:{name}', data)
+                    if name.endswith('.dex') and re.search(rb'Lcom/google/(?:firebase|android/gms)/', data):
+                        failures.append(f'{p}:{name} (Firebase/Play Services dependency)')
         else: inspect(str(p), p.read_bytes())
 for p in (root / 'src').rglob('*.ts*'):
     if re.search(r'process\.env\.EXPO_PUBLIC_\w*(?:API_KEY|TOKEN|SECRET)', p.read_text()): failures.append(str(p)+' (public credential variable)')

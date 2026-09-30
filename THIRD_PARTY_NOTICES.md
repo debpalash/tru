@@ -39,3 +39,20 @@ Native networking uses OkHttp 4.9.2 and AndroidX WebKit 1.12.1, distributed unde
 Apache-2.0. Other Android dependencies remain recorded by Gradle's versioned
 build configuration. Include native upstream notices alongside generated
 JavaScript notices when distributing binaries.
+
+## Editorial wordmark
+
+The Tru logo outlines are rendered from Adobe’s Source Serif 4 Black, copyright
+Adobe, licensed under the SIL Open Font License 1.1. The original font and full
+license are retained in assets/brand/SourceSerif4-Black.otf and
+assets/brand/SourceSerif4-LICENSE.md. Source:
+https://github.com/adobe-fonts/source-serif. The font is not modified or renamed.
+Tru’s logo outlines and release artwork are distributed with the project’s
+AGPL-3.0-only source; the original font keeps its SIL OFL license.
+
+## Local notifications
+
+Tru’s native local-alert module uses Android’s notification APIs and AndroidX.
+It does not register push tokens or contact a push service. Expo Notifications,
+Firebase Messaging and their Google Play Services dependencies were removed
+from the 1.0.0 branding revision.

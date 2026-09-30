@@ -1,0 +1,7 @@
+{
+  "id": "com.tru.news",
+  "url": "https://github.com/debpalash/tru",
+  "author": "debpalash",
+  "name": "Tru",
+  "additionalSettings": "{\"includePrereleases\":true,\"apkFilterRegEx\":\"universal\\\\.apk$\",\"sortMethodChoice\":\"date\"}"
+}

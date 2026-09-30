@@ -4,7 +4,6 @@ import { useEffect, useState, type ComponentProps, type JSX } from 'react'
 import { ActivityIndicator, View, Platform, type ColorValue } from 'react-native'
 import { DarkTheme, DefaultTheme, router, Tabs, ThemeProvider } from 'expo-router'
 import { StatusBar } from 'expo-status-bar'
-import * as Notifications from 'expo-notifications'
 import Ionicons from '@expo/vector-icons/Ionicons'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import { SafeAreaProvider, useSafeAreaInsets } from 'react-native-safe-area-context'
@@ -19,10 +18,6 @@ import { initializeThemePreference, useTheme } from '@/ui/theme'
 import '@/engine/monitor/background'
 
 type IconName = ComponentProps<typeof Ionicons>['name']
-
-Notifications.setNotificationHandler({
-  handleNotification: async () => ({ shouldShowBanner: true, shouldShowList: true, shouldPlaySound: false, shouldSetBadge: false }),
-})
 
 export const unstable_settings = {
   initialRouteName: 'index',
@@ -107,16 +102,7 @@ export default function RootLayout(): JSX.Element {
       }
     })
 
-    const openResponse = (response: Notifications.NotificationResponse | null) => {
-      const url = response?.notification.request.content.data?.url
-      if (typeof url === 'string' && /^https?:\/\//i.test(url)) {
-        router.push({ pathname: '/browser', params: { url, title: 'Monitor match' } })
-        void Notifications.clearLastNotificationResponse()
-      }
-    }
-    const listener = Notifications.addNotificationResponseReceivedListener(openResponse)
-    void Notifications.getLastNotificationResponseAsync().then(openResponse)
-    return () => { live = false; listener.remove() }
+    return () => { live = false }
   }, [])
 
   return (

@@ -1,7 +1,6 @@
 import * as BackgroundFetch from 'expo-background-fetch'
-import * as Notifications from 'expo-notifications'
 import * as TaskManager from 'expo-task-manager'
-import { Platform } from 'react-native'
+import { postLocalAlert, requestAlertPermission } from '../../../modules/local-alerts'
 
 import { fetchNews } from '../news/feed'
 import { isGeneralAudienceNews } from '../news/safety'
@@ -22,7 +21,7 @@ async function runMonitorRefresh(): Promise<number> {
   const matches = items.filter((item) => !seen.has(item.id) && monitorMatches(item.title, monitors).length)
   for (const item of matches.slice(0, 3)) {
     const matched = monitorMatches(item.title, monitors)[0]
-    await Notifications.scheduleNotificationAsync({ content: { title: `Tru · ${matched.query}`, body: item.title, data: { url: item.mobileUrl ?? item.url } }, trigger: { channelId: 'tru-monitors' } })
+    await postLocalAlert(`Tru · ${matched.query}`, item.title, item.mobileUrl ?? item.url)
   }
   const next = [...new Set([...items.slice(0, 100).map((item) => item.id), ...seen])].slice(0, 500)
   await SecureStore.setItemAsync(SEEN_KEY, JSON.stringify(next))
@@ -37,13 +36,7 @@ if (!TaskManager.isTaskDefined(MONITOR_TASK)) {
 }
 
 export async function enableMonitorBackground(): Promise<{ enabled: boolean; detail: string }> {
-  const permission = await Notifications.requestPermissionsAsync()
-  if (!permission.granted) return { enabled: false, detail: 'Notification permission was not granted.' }
-  if (Platform.OS === 'android') await Notifications.setNotificationChannelAsync('tru-monitors', {
-    name: 'Tru monitors',
-    importance: Notifications.AndroidImportance.DEFAULT,
-    lockscreenVisibility: Notifications.AndroidNotificationVisibility.PRIVATE,
-  })
+  if (!await requestAlertPermission()) return { enabled: false, detail: 'Local notification permission was not granted.' }
   const registered = await TaskManager.isTaskRegisteredAsync(MONITOR_TASK)
   if (!registered) await BackgroundFetch.registerTaskAsync(MONITOR_TASK, { minimumInterval: 15 * 60, stopOnTerminate: false, startOnBoot: true })
   return { enabled: true, detail: 'Background checks are registered. Android controls the exact delivery interval.' }

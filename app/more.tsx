@@ -36,7 +36,7 @@ export default function MoreScreen(): JSX.Element {
   const styles = useThemedStyles(makeStyles)
   return (
     <SafeAreaView style={styles.screen} edges={['top', 'left', 'right']}>
-      <AppHeader back={false} title="Tru" subtitle="News. With evidence." />
+      <AppHeader back={false} title="Tru" subtitle="Find the facts. Keep your privacy." />
       <ScrollView contentContainerStyle={styles.content}>
         {groups.map((group) => (
           <View key={group.label}>

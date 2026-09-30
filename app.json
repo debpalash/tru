@@ -19,12 +19,12 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/icon-foreground.png",
         "backgroundColor": "#171717"
-      }
+      },
+      "versionCode": 2
     },
     "plugins": [
       "expo-router",
       "expo-secure-store",
-      "expo-notifications",
       "expo-video",
       [
         "expo-splash-screen",
@@ -40,13 +40,9 @@
         }
       ]
     ],
-    "notification": {
-      "icon": "./assets/notification-icon.png",
-      "color": "#171717"
-    },
     "experiments": {
       "typedRoutes": true
     },
-    "description": "News. With evidence. Follow original reporting, compare sources, and see what remains uncertain."
+    "description": "Find the facts. Keep your privacy. Free news, original sources and optional source-backed AI. No subscription or Tru telemetry."
   }
 }

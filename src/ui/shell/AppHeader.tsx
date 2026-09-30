@@ -7,6 +7,7 @@ import { Text } from '../design/Text'
 import { hitTarget, space } from '../design/tokens'
 import { PressableScale } from '../ios/PressableScale'
 import { useThemedStyles, type ThemeTokens } from '../theme'
+import { Wordmark } from '../brand/Wordmark'
 
 export function AppHeader({ title, subtitle, right, back = true }: { title: string; subtitle?: string; right?: ReactNode; back?: boolean }): JSX.Element {
   const styles = useThemedStyles(makeStyles)
@@ -18,7 +19,7 @@ export function AppHeader({ title, subtitle, right, back = true }: { title: stri
         </PressableScale>
       ) : <View style={styles.rootInset} />}
       <View style={styles.copy}>
-        <Text variant="title" weight="600" style={styles.title} numberOfLines={1}>{title}</Text>
+        {title === 'Tru' ? <Wordmark width={62} /> : <Text variant="title" weight="600" style={styles.title} numberOfLines={1}>{title}</Text>}
         {subtitle ? <Text variant="metadata" tone="muted" style={styles.subtitle} numberOfLines={1}>{subtitle}</Text> : null}
       </View>
       <View style={styles.right}>{right}</View>

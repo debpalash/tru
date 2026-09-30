@@ -20,6 +20,7 @@ subprocess.run(['bun','run','notices'],cwd=root,check=True)
 notices=root/'android'/'app'/'src'/'main'/'assets'/'licenses'
 notices.mkdir(parents=True,exist_ok=True)
 for name in ['LICENSE','THIRD_PARTY_NOTICES.md']: shutil.copy2(root/name,notices/name)
+shutil.copy2(root/'assets'/'brand'/'SourceSerif4-LICENSE.md',notices/'SourceSerif4-LICENSE.md')
 shutil.copytree(root/'licenses'/'native',notices/'native',dirs_exist_ok=True)
 for name in ['dependencies.json','THIRD_PARTY_LICENSES.txt']: shutil.copy2(root/'.local'/'licenses'/name,notices/name)
 subprocess.run(['./android/gradlew','-p','android',':app:assembleRelease',':app:bundleRelease','-PtruSplitApks=true','--console=plain'],cwd=root,env=env,check=True)

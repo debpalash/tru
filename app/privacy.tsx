@@ -4,6 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import { AppHeader } from '@/ui/shell/AppHeader'
 import { useThemedStyles, type ThemeTokens } from '@/ui/theme'
 const SECTIONS = [
+  ['No business built on your data', 'Tru has no ads, analytics SDK, subscription, remote push service or developer-operated data collection endpoint. You can read news without an account. Optional AI connects only to a service you choose; its host and providers have their own data practices.'],
   ['Your device', 'Tru stores saved stories, preferences, monitor terms, drafts, and service usage on your device. X session cookies and your service access token use the operating system’s secure storage. Region selection uses locale and time zone, not GPS.'],
   ['AI and research', 'After you connect a service, questions and selected source excerpts are sent to its configured AI providers. If one provider fails, another may receive the same request. Web research sends your query and selected publisher URLs to Firecrawl through the service.'],
   ['Media verification', 'Safe media sends image previews to the connected service and Google AI before displaying them. This can include avatars and media from your signed-in X feed. Choose Hide media in Settings to stop these preview checks. Automated checks can make mistakes.'],

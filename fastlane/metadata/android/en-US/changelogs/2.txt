@@ -1,0 +1,1 @@
+Editorial Tru logo and launcher branding. Compact source-first news UI. Native local alerts replace Firebase and Google Play Services. Topic monitors match whole words. Updated privacy copy, screenshots, demonstrations and distribution metadata. Same 1.0.0 name with Android version code 2 for upgrades.

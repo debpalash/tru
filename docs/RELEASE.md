@@ -66,7 +66,7 @@ For a new app with no existing signing identity, explicitly select a new key:
 ```sh
 python3 scripts/create-signing-key.py --new-key
 bun run release:build
-bun run release:source
+bun run release:package
 ```
 
 The generator writes the keystore and private `signing.env` under ignored
@@ -78,6 +78,24 @@ license notices, builds APK and AAB, and scans both for credentials. Artifacts
 are written under `.local/release/`. The build includes a universal APK and
 separate arm64-v8a, armeabi-v7a, x86 and x86_64 APKs, plus the store AAB.
 No production signing key is generated or selected automatically.
+
+`release:package` verifies the signer and architecture variants, creates the
+matching source archive and public media bundle, combines third-party notices,
+audits every attachment, and writes SHA-256 checksums. Keep private signing files
+out of uploads; attach only the packaged files under `.local/release/`.
+
+Independent stores can explicitly build an unsigned universal APK for their own
+signing pipeline without access to the developer's signing identity:
+
+```sh
+EXPO_NO_DOTENV=1 ./android/gradlew -p android :app:assembleRelease \
+  -PtruUnsignedRelease=true --console=plain
+```
+
+This opt-in flag leaves the APK unsigned. Official GitHub release scripts always
+require and verify the production signer. Independent signatures cannot update
+GitHub-signed installations in place. See [distribution notes](DISTRIBUTION.md)
+for the F-Droid dependency-build review still needed.
 
 ## Verification
 

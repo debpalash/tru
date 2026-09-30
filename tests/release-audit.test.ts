@@ -41,3 +41,18 @@ test('release audit rejects private builder paths in native binaries', () => {
     expect(result.stdout.toString()).not.toContain('private-builder')
   } finally { rmSync(folder, { recursive: true, force: true }) }
 })
+
+test('release audit rejects Firebase and Play Services in compiled Android artifacts', () => {
+  const folder = mkdtempSync(join(tmpdir(), 'tru-audit-'))
+  try {
+    for (const [sdk, expected] of [['firebase', 1], ['android/gms', 1], ['android/material', 0]] as const) {
+      const artifact = join(folder, 'app.apk')
+      const descriptor = 'Lcom/' + 'google/' + sdk + '/Example;'
+      const packed = Bun.spawnSync(['python3', '-c', 'import sys,zipfile; z=zipfile.ZipFile(sys.argv[1],"w"); z.writestr("classes.dex",sys.argv[2]); z.close()', artifact, descriptor])
+      expect(packed.exitCode).toBe(0)
+      const result = Bun.spawnSync(['python3', auditor, artifact])
+      expect(result.exitCode).toBe(expected)
+      if (expected) expect(result.stdout.toString()).toContain('Firebase/Play Services dependency')
+    }
+  } finally { rmSync(folder, { recursive: true, force: true }) }
+})

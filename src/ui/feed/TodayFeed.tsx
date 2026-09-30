@@ -58,6 +58,7 @@ import { haptics } from '@/ui/haptics'
 import { PressableScale } from '@/ui/ios/PressableScale'
 import { refreshTint } from '@/ui/ios/listProps'
 import { openLink } from '@/ui/openLink'
+import { Wordmark } from '@/ui/brand/Wordmark'
 import { useTheme, useThemedStyles, type ThemeTokens } from '@/ui/theme'
 
 import { BriefCard } from './BriefCard'
@@ -380,8 +381,8 @@ export function TodayFeed(): JSX.Element {
       <View style={styles.top}>
         <View style={styles.topRow}>
           <View style={styles.topCopy}>
-            <Text style={styles.screenTitle}>Today</Text>
-            <Text style={styles.date}>{dateLabel()}</Text>
+            <Wordmark width={78} />
+            <Text style={styles.date}>Today · {dateLabel()}</Text>
           </View>
           <PressableScale style={styles.avatar} hitSlop={7} onPress={() => router.push('/settings')} accessibilityRole="button" accessibilityLabel="Open settings">
             <Ionicons name="options-outline" size={22} color={t.text} />

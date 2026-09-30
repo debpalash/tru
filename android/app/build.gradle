@@ -92,7 +92,7 @@ android {
         applicationId 'com.tru.news'
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 1
+        versionCode 2
         versionName "1.0.0"
 
         // __FILE__ assertions must not expose the release builder's local paths.
@@ -118,8 +118,9 @@ android {
     def signingAlias = System.getenv('TRU_RELEASE_KEY_ALIAS')
     def signingKeyPassword = System.getenv('TRU_RELEASE_KEY_PASSWORD')
     def hasReleaseSigning = [signingFile, signingPassword, signingAlias, signingKeyPassword].every { it }
+    def unsignedRelease = (findProperty('truUnsignedRelease') ?: 'false').toBoolean()
     gradle.taskGraph.whenReady { graph ->
-        if (graph.allTasks.any { it.path.startsWith(':app:') && it.name.toLowerCase().contains('release') } && !hasReleaseSigning) {
+        if (graph.allTasks.any { it.path.startsWith(':app:') && it.name.toLowerCase().contains('release') } && !hasReleaseSigning && !unsignedRelease) {
             throw new GradleException('Release signing is missing. Set TRU_RELEASE_STORE_FILE, STORE_PASSWORD, KEY_ALIAS and KEY_PASSWORD. See docs/RELEASE.md.')
         }
     }
@@ -138,7 +139,7 @@ android {
             signingConfig signingConfigs.debug
         }
         release {
-            signingConfig signingConfigs.release
+            signingConfig unsignedRelease ? null : signingConfigs.release
             def enableShrinkResources = findProperty('android.enableShrinkResourcesInReleaseBuilds') ?: 'false'
             shrinkResources enableShrinkResources.toBoolean()
             minifyEnabled enableMinifyInReleaseBuilds
